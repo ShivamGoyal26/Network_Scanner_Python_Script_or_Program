@@ -1,0 +1,77 @@
+
+In this we will learn how to find all the hosts and their ip address & mac address connected to the same network on which our machine is connected 
+here first all to do this operation we have to know about our ip address 
+so for this 
+1. We will excute the first command as (ifconfig) because from this command we can find the ip address of our machine 
+you can find your ip written after the (inet) bascially the inet is your machine's ip address 
+
+
+let's say we and A, B, C are the four machines which are connected to the router 
+
+Now let's suppose your router has following ip and mac address 
+ip : 10.0.2.1
+mac : 00:11:22:33:44:20
+
+now we should know that whatever machines are connected to this router will get the ip and mac by its router and how router will provide the ip and mac right let's see 
+
+For this router simply changes the last digit of the ip rest of the will remain same now the last digit could be any thing 
+ now we should know that the ip address range is from the 0 to 255
+so here in this case of the ip address the router can pick any random number from the 0 to 255 and assign it to the connected machines 
+
+
+let's assume our machine has following addresses 
+ip : 10.0.2.6
+mac : 00:11:22:33:44:24
+
+Machine B
+ip : 10.0.2.8
+mac : 00:11:23:33:44:77
+
+Machine A
+ip : 10.0.2.9
+mac : 00:11:1a:33:44:88
+
+Machine A
+ip : 10.0.2.3
+mac : 00:21:22:33:44:90
+
+here when we want to find the all the device which is connected to the same network and also wanna find there ip and mac address then we use the ARP method 
+
+what is ARP ?
+in this bascially what we does lets see 
+here we know what is our ip which is 10.0.2.6 in this case 
+here we will send the request to all the devices including the router with the all the possible ip addrees that could exist 
+like here the ip addresses are exists from 10.0.2.0 to 10.0.2.254
+then here we will send the first ARP request with the ip address 10.0.2.1 here basically we send the ARP request to all the connected devices in the network in which we said all the devices 
+who has the ip address 10.0.2.1 then if any device is present in the network with this ip will respond to our machine yes i am here and it will give its mac and ip address to our mahine 
+too in this case here no machine with this address 
+
+Here we will not get the ip and mac address in the output ofcourse because our machine behaves as a sender 
+
+in this way this process repeated with all the possible ip which is from the 10.0.2.0 to 10.0.2.254  in the command usually we represent it as in the short form like 10.0.2.1/24
+here in the all process we will also get the ip and mac address of the gateway or router in simple words
+
+This is know as the ARP method / protocol
+
+Here we have command which will perform this task 
+explained below 
+
+
+
+
+2. (netdiscover -r 10.0.2.1/24) this is the command in our case here r represents the range of ip's here in our case we know last digit changes always that is why we wrote their 
+10.0.2.1/24 and at last we wrote 1/24 which is short form to represent that we want the ip address from the 10.0.2.0 to 10.0.2.254
+
+
+that's all 
+this will show you all the connected devices and their ip address and the mac address 
+
+
+
+
+to find the gateway address or in the simple words if i say to you to find the ip address of our router we use the command 
+(route -n)
+
+
+we should know that the data in the network sent with the help of ether or MAC Address not ip adddress
+
