@@ -45,15 +45,31 @@ import scapy.all as scapy
 # the next step is to send the packets in the network and wait for the responese
 
 
+# def scan(ip):
+#     arp_request = scapy.ARP(pdst = ip)
+#     broadcast = scapy.Ether(dst = "ff:ff:ff:ff:ff:ff")
+#     arp_request_broadcast = broadcast / arp_request
+#     # print(broadcast.summary())
+#     # now scapy has the function called srp(name of the packet which we want to send) this function allows us to send the packets with the custom ether part in the network and recieve the response
+# # here it will return us more than one information which is here we stored in the two variables answered and non-answered in the form of list
+# # now here we didn't give the address to this here we just asked to send it but not mentioned where to send but here we have already passed the dstination address in the boradcast variable means now it will send the packed to the dest mac address which is ff:ff:ff:ff:ff:ff and now this will boradcast the packet to other clients
+# # if you dont want to send the packet to the broadcast mac you can use the mac of that client where you wanna send this packet
+#     answered, unanswered = scapy.srp(arp_request_broadcast, timeout =1)
+#     print(answered.summary()) # see the output you will get everything
+# scan("10.0.2.1/24")
+
+
 def scan(ip):
     arp_request = scapy.ARP(pdst = ip)
     broadcast = scapy.Ether(dst = "ff:ff:ff:ff:ff:ff")
     arp_request_broadcast = broadcast / arp_request
-    # print(broadcast.summary())
-    # now scapy has the function called srp(name of the packet which we want to send) this function allows us to send the packets with the custom ether part in the network and recieve the response
-# here it will return us more than one information which is here we stored in the two variables answered and non-answered
-# now here we didn't give the address to this here we just asked to send it but not mentioned where to send but here we have already passed the dstination address in the boradcast variable means now it will send the packed to the dest mac address which is ff:ff:ff:ff:ff:ff and now this will boradcast the packet to other clients
-# if you dont want to send the packet to the broadcast mac you can use the mac of that client where you wanna send this packet
-    answered, unanswered = scapy.srp(arp_request_broadcast, timeout =1)
-    print(unanswered.summary())
+    answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose = False)[0]
+    # it has the list answered and noo-answered
+    # further answered_list has also the two list which is packets, answers
+    print("IP"\t\tt\t"MAC  Address")
+    for element in answered_list:
+        print(element[1].psrc)  # ip address of the client
+        print(element[1].hwsrc)     # mac address of the client
+        print(("------------------------------------------------------------------------------------------------------------"))
+
 scan("10.0.2.1/24")
