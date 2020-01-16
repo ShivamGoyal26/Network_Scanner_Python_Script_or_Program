@@ -41,14 +41,14 @@ what is ARP ?
 in this bascially what we does lets see 
 here we know what is our ip which is 10.0.2.6 in this case 
 here we will send the request to all the devices including the router with the all the possible ip addrees that could exist 
-like here the ip addresses are exists from 10.0.2.0 to 10.0.2.254
+like here the ip addresses are exists from 10.0.2.0 to 10.0.2.255
 then here we will send the first ARP request with the ip address 10.0.2.1 here basically we send the ARP request to all the connected devices in the network in which we said all the devices 
 who has the ip address 10.0.2.1 then if any device is present in the network with this ip will respond to our machine yes i am here and it will give its mac and ip address to our mahine 
 too in this case here no machine with this address 
 
 Here we will not get the ip and mac address in the output ofcourse because our machine behaves as a sender 
 
-in this way this process repeated with all the possible ip which is from the 10.0.2.0 to 10.0.2.254  in the command usually we represent it as in the short form like 10.0.2.1/24
+in this way this process repeated with all the possible ip which is from the 10.0.2.0 to 10.0.2.255  in the command usually we represent it as in the short form like 10.0.2.1/24
 here in the all process we will also get the ip and mac address of the gateway or router in simple words
 
 This is know as the ARP method / protocol
