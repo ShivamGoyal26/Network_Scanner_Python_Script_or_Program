@@ -66,10 +66,10 @@ def scan(ip):
     answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose = False)[0]
     # it has the list answered and noo-answered
     # further answered_list has also the two list which is packets, answers
-    print("IP"\t\tt\t"MAC  Address")
+    print("IP\t\t\tMAC Address\n---------------------------------------------------------------------------------------")
     for element in answered_list:
-        print(element[1].psrc)  # ip address of the client
-        print(element[1].hwsrc)     # mac address of the client
-        print(("------------------------------------------------------------------------------------------------------------"))
+
+        print(element[1].psrc + "\t\t" + element[1].hwsrc)  # ip address of the client
+
 
 scan("10.0.2.1/24")
